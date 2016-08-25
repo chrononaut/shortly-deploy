@@ -1,5 +1,6 @@
-// var db = require('../config');
-// var crypto = require('crypto');
+var db = require('../config').db;
+var Users = require('../config').Urls;
+var crypto = require('crypto');
 
 // var Link = db.Model.extend({
 //   tableName: 'urls',
@@ -27,4 +28,5 @@ Urls.pre('save', function(next) {
   this.code = shasum.digest('hex').slice(0, 5);
   next();
 });
+
 module.exports = Link;
