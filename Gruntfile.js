@@ -41,15 +41,28 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      target: {
+        files: {
+          'public/dist/built.min.js': ['public/dist/built.js']
+        }
+      }
     },
 
     eslint: {
       target: [
         // Add list of files to lint here
+        'public/client/*.js',
+        'lib/*.js',
+        'app/**/*.js',
+        '*.js'
       ]
     },
 
     cssmin: {
+      minify: {
+        src: 'public/*.css',
+        dest: 'public/dist/style.min.css'
+      }
     },
 
     watch: {
@@ -63,6 +76,7 @@ module.exports = function(grunt) {
           'uglify'
         ]
       },
+
       css: {
         files: 'public/*.css',
         tasks: ['cssmin']
@@ -71,6 +85,7 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
+        command: 'git push live master'
       }
     },
   });
@@ -103,6 +118,7 @@ module.exports = function(grunt) {
   grunt.registerTask('upload', function(n) {
     if (grunt.option('prod')) {
       // add your production server task here
+      grunt.task.run('shell:prodServer');
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
@@ -110,6 +126,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
+    'eslint',
+    'mochaTest'
   ]);
 
 
