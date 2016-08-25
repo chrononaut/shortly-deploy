@@ -3,6 +3,13 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      options: {
+        separator: ';'
+      },
+      dist: {
+        src: 'public/client/*.js',
+        dest: 'public/dist/built.js'
+      }
     },
 
     mochaTest: {
@@ -16,7 +23,20 @@ module.exports = function(grunt) {
 
     nodemon: {
       dev: {
-        script: 'server.js'
+        script: 'server.js',
+        options: {
+          env: {
+            NODE_ENV: 'dev'
+          }
+        }
+      },
+      prod: {
+        script: 'server.js',
+        options: {
+          env: {
+            NODE_ENV: 'prod'
+          }
+        }
       }
     },
 
@@ -77,6 +97,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'concat'
   ]);
 
   grunt.registerTask('upload', function(n) {
