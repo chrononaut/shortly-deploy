@@ -47,4 +47,25 @@ db.knex.schema.hasTable('users').then(function(exists) {
 //   console.log('connected.');
 // });
 
+// var Urls = new mongoose.Schema({
+//   url: String,
+//   baseUrl: String,
+//   code: String,
+//   title: String,
+//   visits: { type: Number, default: 0 },
+//   timestamp: { type: Date, default: Date.now }
+// });
+
+// var Users = new mongoose.Schema({
+//   username: {
+//     type: String,
+//     unique: true
+//   },
+//   password: String,
+//   timestamp: Date
+// });
+
+// exports.Urls = Urls;
+// exports.Users = Users;
+// exports.db = db;
 module.exports = db;
