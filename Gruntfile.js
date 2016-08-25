@@ -125,11 +125,11 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('deploy', [
-    // add your deploy tasks here
-    'build',
-    'upload'
-  ]);
-
-
+  grunt.registerTask('deploy', function(n) {
+    if (grunt.option('prod')) {
+      grunt.task.run(['build', 'upload']);
+    } else {  
+      grunt.task.run('server-dev');
+    }
+  });
 };

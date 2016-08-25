@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <title>Shortly</title>
-    <% if process.env.NODE_ENV === 'dev' {%>
+    <% if (process.env.NODE_ENV === 'dev') { %>
       <link rel="stylesheet" type="text/css" href="style.css">
     <% } else { %>
       <link rel="stylesheet" type="text/css" href="style.min.css">
-      <% } %>
+    <% } %>
     <script src="/lib/jquery.js"></script>
     <script src="/lib/underscore.js"></script>
     <script src="/lib/backbone.js"></script>

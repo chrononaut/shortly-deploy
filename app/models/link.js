@@ -1,5 +1,4 @@
 var db = require('../config').db;
-var Users = require('../config').Urls;
 var crypto = require('crypto');
 
 // var Link = db.Model.extend({
@@ -18,11 +17,11 @@ var crypto = require('crypto');
 // });
 
 var mongoose = require('mongoose');
-var Urls = require('../config').Urls;
+var UrlSchema = require('../config').Urls;
 
-var Link = mongoose.model('Link', Urls);
+var Link = mongoose.model('Link', UrlSchema);
 
-Urls.pre('save', function(next) {
+UrlSchema.pre('save', function(next) {
   var shasum = crypto.createHash('sha1');
   shasum.update(this.url);
   this.code = shasum.digest('hex').slice(0, 5);

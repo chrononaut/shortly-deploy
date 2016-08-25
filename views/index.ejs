@@ -5,7 +5,6 @@
     new Shortly();
   });
 </script>
-<% console.log('environment'); %>
 <%if (process.env.NODE_ENV === 'prod') { %>
   <script src='/client/built.min.js'></script>
 <% } else { %>
