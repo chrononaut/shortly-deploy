@@ -68,4 +68,5 @@ db.knex.schema.hasTable('users').then(function(exists) {
 // exports.Urls = Urls;
 // exports.Users = Users;
 // exports.db = db;
+//
 module.exports = db;
