@@ -129,7 +129,7 @@ module.exports = function(grunt) {
     if (grunt.option('prod')) {
       grunt.task.run(['build', 'upload']);
     } else {  
-      grunt.task.run('server-dev');
+      grunt.task.run(['nodemon:prod']);
     }
   });
 };
