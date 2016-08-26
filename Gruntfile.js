@@ -85,9 +85,17 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
-        command: 'git push live master'
+        command: [ 
+          'rm -rf /public/client /public/dist/built.js public/style.css',
+          'git commit -am"Cleaning up and commiting built files"',
+          'git push live master'
+        ].join('&&')
+      },
+      merge: {
+        command: ['git checkout -b deployment',
+        'git merge master'].join('&&')
       }
-    },
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -113,7 +121,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'test', 'concat', 'uglify', 'cssmin'
+    'test', 'shell:merge', 'concat', 'uglify', 'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
